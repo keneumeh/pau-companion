@@ -1,6 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { TailwindProvider } from "tailwindcss-react-native";
 
 const CategoryCard = ({ imgUrl, title }) => {
   return (

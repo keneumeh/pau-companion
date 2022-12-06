@@ -17,6 +17,7 @@ import {
 } from "react-native-heroicons/solid";
 import { QuestionMarkCircleIcon } from "react-native-heroicons/outline";
 import DishRow from "../components/DishRow";
+import { urlFor } from "../sanity";
 
 const RestaurantScreen = ({ navigation }) => {
   const {
@@ -38,7 +39,7 @@ const RestaurantScreen = ({ navigation }) => {
     <ScrollView>
       <View className="relative">
         <Image
-          source={{ uri: "https://links.papareact.com/gn7" }}
+          source={{ uri: urlFor(imgUrl).url() }}
           className="w-full h-56 bg-gray-300 p-4"
         ></Image>
         <TouchableOpacity
@@ -57,10 +58,7 @@ const RestaurantScreen = ({ navigation }) => {
           <Text className="text-gray-500 text-xs">Nearby · {address}</Text>
         </View>
         <View>
-          <Text className="text-gray-500 pb-4">
-            Yo Amala is the best place to get your freshly cooked amala
-            {short_description}
-          </Text>
+          <Text className="text-gray-500 pb-4">{short_description}</Text>
         </View>
       </View>
       <TouchableOpacity className="flex-row p-4 items-center bg-white border-y border-gray-200 ">

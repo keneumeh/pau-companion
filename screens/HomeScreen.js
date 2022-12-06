@@ -6,7 +6,7 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   AdjustmentsVerticalIcon,
@@ -16,14 +16,32 @@ import {
 } from "react-native-heroicons/outline"; //react native svg downgraded to v9.13.3 cause of error
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
+import sanityClient from "../sanity";
 
 const HomeScreen = ({ imgUrl, title }) => {
   const navigation = useNavigation();
+  const [featuredCategories, setFeaturedCategories] = useState([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+  }, []);
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+    *[_type == "featured"]{
+      ...,
+      restaurants[]->{
+        ...,
+        dishes[]->
+      }
+    }`
+      )
+      .then((data) => {
+        setFeaturedCategories(data);
+      });
   }, []);
   return (
     <SafeAreaView className="bg-white pt-5">
@@ -50,7 +68,7 @@ const HomeScreen = ({ imgUrl, title }) => {
       </View>
       {/* searchbar */}
       <View className="flex-row items-center space-x-2 pb-2 mx-4">
-        <View className="flex-row flex-1 space-x-2 p-3 bg-gray-300">
+        <View className="flex-row flex-1 space-x-2 p-3 bg-gray-300 rounded-md">
           <MagnifyingGlassIcon size={20} color="grey" />
           <TextInput placeholder="Search Pan Atlantic University" />
         </View>
@@ -65,23 +83,15 @@ const HomeScreen = ({ imgUrl, title }) => {
         <Categories />
 
         {/* Featured rows */}
-        <FeaturedRow
-          id="123"
-          title="Featured"
-          description="Paid placements from our partners"
-        />
-        {/* Tasty Discounts */}
-        <FeaturedRow
-          id="1234"
-          title="Tasty Discounts"
-          description="Everyone is enjoying these great discounts"
-        />
-        {/* Offers near you */}
-        <FeaturedRow
-          id="12345"
-          title="Offers Near You"
-          description="Why not support your local restaurant this night?"
-        />
+
+        {featuredCategories?.map((category) => (
+          <FeaturedRow
+            key={category._id}
+            id={category._id}
+            title={category.name}
+            description={category.short_description}
+          />
+        ))}
 
         <Image style={{ width: 100, height: 100 }} source={{ uri: imgUrl }} />
         <Text>{title}</Text>
