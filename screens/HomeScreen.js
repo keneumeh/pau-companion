@@ -92,9 +92,6 @@ const HomeScreen = ({ imgUrl, title }) => {
             description={category.short_description}
           />
         ))}
-
-        <Image style={{ width: 100, height: 100 }} source={{ uri: imgUrl }} />
-        <Text>{title}</Text>
       </ScrollView>
     </SafeAreaView>
   );

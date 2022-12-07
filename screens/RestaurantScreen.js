@@ -6,7 +6,7 @@ import {
   Touchable,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRoute, useLayoutEffect } from "@react-navigation/native";
 import {
   ArrowLeftIcon,
@@ -17,9 +17,22 @@ import {
 } from "react-native-heroicons/solid";
 import { QuestionMarkCircleIcon } from "react-native-heroicons/outline";
 import DishRow from "../components/DishRow";
-import { urlFor } from "../sanity";
+import sanityClient, { urlFor } from "../sanity";
 
 const RestaurantScreen = ({ navigation }) => {
+  // const [allDish, setAllDish] = useState([]);
+  // useEffect(() => {
+  //   sanityClient
+  //     .fetch(
+  //       `
+  //     *[_type == "restaurant" && dishes]
+  //     `
+  //     )
+  //     .then((data) => {
+  //       setAllDish(data);
+  //     });
+  // });
+
   const {
     params: {
       id,
@@ -69,10 +82,17 @@ const RestaurantScreen = ({ navigation }) => {
         <ChevronRightIcon size={20} color="#00ccbb" />
       </TouchableOpacity>
       <Text className="text-xl font-bold p-4">Menu</Text>
-      <DishRow title="Gbegiri" price="N2000.00" />
-      <DishRow title="Gbegiri" price="N2000.00" />
-      <DishRow title="Gbegiri" price="N2000.00" />
-      <DishRow title="Gbegiri" price="N2000.00" />
+
+      {dishes.map((dish) => (
+        <DishRow
+          key={dish._id}
+          id={dish._id}
+          title={dish.name}
+          price={dish.price}
+          image={dish.image}
+          description={dish.short_description}
+        />
+      ))}
     </ScrollView>
   );
 };

@@ -1,21 +1,19 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { MinusCircleIcon, PlusCircleIcon } from "react-native-heroicons/solid";
+import { urlFor } from "../sanity";
 
-const DishRow = ({ title, price }) => {
+const DishRow = ({ id, image, title, price, description }) => {
   return (
     <View className="bg-white p-4 mb-1">
       <View className=" flex-row items-center">
         <View className="flex-1 pr-4">
           <Text className="text-lg">{title} </Text>
-          <Text className="text-gray-400">
-            Yo Amala is the best place to get your freshly cooked gbegiri Amala
-            is the best place to get your freshly cooked amala
-          </Text>
+          <Text className="text-gray-400">{description}</Text>
         </View>
         <Image
           className="h-16 w-16 pl-4"
-          source={{ uri: "https://links.papareact.com/gn7" }}
+          source={{ uri: urlFor(image).url() }}
         />
       </View>
 
