@@ -87,7 +87,7 @@ const RestaurantScreen = ({ navigation }) => {
         <DishRow
           key={dish._id}
           id={dish._id}
-          title={dish.name}
+          name={dish.name}
           price={dish.price}
           image={dish.image}
           description={dish.short_description}

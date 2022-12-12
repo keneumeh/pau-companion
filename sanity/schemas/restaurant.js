@@ -56,5 +56,11 @@ export default {
       title: "Dishes",
       of: [{ type: "reference", to: [{ type: "dish" }] }],
     },
+    {
+      name: "sides",
+      type: "array",
+      title: "Sides",
+      of: [{ type: "reference", to: [{ type: "side" }] }],
+    },
   ],
 };

@@ -9,7 +9,7 @@ import {
   selectBasketItemsWithId,
 } from "../features/basketSlice";
 import { useDispatch, useSelector } from "react-redux";
-const DishRow = ({ id, image, name, price, description }) => {
+const ClothItem = ({ id, image, name, price, description }) => {
   const [isPressed, setIsPressed] = useState(false);
   const dispatch = useDispatch();
   const items = useSelector((state) => selectBasketItemsWithId(state, id));
@@ -62,4 +62,4 @@ const DishRow = ({ id, image, name, price, description }) => {
   );
 };
 
-export default DishRow;
+export default ClothItem;

@@ -9,6 +9,8 @@ import featured from "./featured";
 import category from "./category";
 import restaurant from "./restaurant";
 import dish from "./dish";
+import side from "./side";
+import laundry from "./laundry";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -16,5 +18,12 @@ export default createSchema({
   name: "default",
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([restaurant, dish, category, featured]),
+  types: schemaTypes.concat([
+    restaurant,
+    dish,
+    side,
+    category,
+    featured,
+    laundry,
+  ]),
 });
