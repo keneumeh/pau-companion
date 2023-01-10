@@ -30,7 +30,7 @@ const ClothItem = ({ id, image, name, price, description }) => {
       >
         <View className=" flex-row items-center">
           <View className="flex-1 pr-4">
-            <Text className="text-lg">{name} </Text>
+            <Text className="text-lg text-gray-700">{name} </Text>
             <Text className="text-gray-400">{description}</Text>
           </View>
           <Image
@@ -39,7 +39,7 @@ const ClothItem = ({ id, image, name, price, description }) => {
           />
         </View>
 
-        <Text className="text-pink-500 py-4">{price}</Text>
+        <Text className="text-pink-400 py-4">{price}</Text>
       </TouchableOpacity>
       {isPressed && (
         <View className="bg-white flex-row items-center space-x-2">

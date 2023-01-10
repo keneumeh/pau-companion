@@ -18,7 +18,7 @@ import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 import sanityClient from "../sanity";
 
-const HomeScreen = ({ imgUrl, title }) => {
+const RestaurantsScreen = ({ imgUrl, title }) => {
   const navigation = useNavigation();
   const [featuredCategories, setFeaturedCategories] = useState([]);
 
@@ -31,13 +31,13 @@ const HomeScreen = ({ imgUrl, title }) => {
     sanityClient
       .fetch(
         `
-    *[_type == "featured"]{
-      ...,
-      restaurants[]->{
+      *[_type == "featured"]{
         ...,
-        dishes[]->
-      }
-    }`
+        restaurants[]->{
+          ...,
+          dishes[]->
+        }
+      }`
       )
       .then((data) => {
         setFeaturedCategories(data);
@@ -46,33 +46,49 @@ const HomeScreen = ({ imgUrl, title }) => {
   return (
     <SafeAreaView className="bg-white pt-5">
       {/* header */}
-      <View className="flex-row pb-3 items-center mx-4 space-x-2 mb-4">
+      <View className="flex-row pb-3 items-center mx-4 space-x-2 ">
         <Image
           source={{ uri: "https://links.papareact.com/wru" }}
           className="h-7 w-9 bg-grey-300 p-4 rounded-full"
         />
         {/* <Image
-          source={require("../assets/2343430.jpg")}
-          className="h-7 w-9 bg-grey-300 p-4 rounded-full"
-        /> */}
+            source={require("../assets/2343430.jpg")}
+            className="h-7 w-9 bg-grey-300 p-4 rounded-full"
+          /> */}
         <View className="flex-1">
           <Text className="font-bold text-xs text-gray-400">
             Delivery coming soon!
           </Text>
-          <Text className="font-bold text-xl">
+          <Text className="font-bold text-xl text-gray-700">
             Current Location
             <ChevronDownIcon size={20} color="#00CCBB" />
           </Text>
         </View>
         <UserIcon size={35} color="#00CCBB" />
       </View>
-
+      {/* searchbar */}
+      <View className="flex-row items-center space-x-2 pb-2 mx-4">
+        <View className="flex-row flex-1 space-x-2 p-3 bg-gray-300 rounded-md">
+          <MagnifyingGlassIcon size={20} color="grey" />
+          <TextInput placeholder="Search Pan Atlantic University" />
+        </View>
+        <AdjustmentsVerticalIcon color="#00ccbb" />
+      </View>
       {/* body */}
+      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+        {/* Featured rows */}
 
-      {/* Categories */}
-      <Categories />
+        {featuredCategories?.map((category) => (
+          <FeaturedRow
+            key={category._id}
+            id={category._id}
+            title={category.name}
+            description={category.short_description}
+          />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
+export default RestaurantsScreen;

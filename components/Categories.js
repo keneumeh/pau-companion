@@ -18,18 +18,19 @@ const Categories = () => {
   }, []);
   return (
     <ScrollView
+      className=""
       contentContainerStyle={{
         paddingHorizontal: 15,
-        paddingTop: 10,
+        height: 800,
       }}
-      horizontal
-      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
     >
       {categories.map((category) => (
         <CategoryCard
           key={category._id}
           id={category._id}
           imgUrl={urlFor(category.image).width(200).url()}
+          short_description={category.short_description}
           title={category.name}
         />
       ))}

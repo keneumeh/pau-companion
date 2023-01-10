@@ -11,6 +11,7 @@ import restaurant from "./restaurant";
 import dish from "./dish";
 import side from "./side";
 import laundry from "./laundry";
+import taxi from "./taxi";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -25,5 +26,6 @@ export default createSchema({
     category,
     featured,
     laundry,
+    taxi,
   ]),
 });

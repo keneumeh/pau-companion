@@ -1,11 +1,11 @@
 export default {
-  name: "category",
-  title: "Menu Category",
+  name: "taxi",
+  title: "Taxi",
   type: "document",
   fields: [
     {
       name: "name",
-      title: "Category name",
+      title: "Name of taxi",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
@@ -16,8 +16,13 @@ export default {
       validation: (Rule) => Rule.max(200),
     },
     {
+      name: "price",
+      title: "Price of the Taxi",
+      type: "number",
+    },
+    {
       name: "image",
-      title: "Image of Category",
+      title: "Image of the Taxi",
       type: "image",
     },
   ],
