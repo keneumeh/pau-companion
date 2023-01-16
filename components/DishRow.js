@@ -24,9 +24,7 @@ const DishRow = ({ id, image, name, price, description }) => {
     <>
       <TouchableOpacity
         onPress={() => setIsPressed(!isPressed)}
-        className={`bg-white p-4 border border-gray-200 ${
-          isPressed && "border-b-0"
-        }`}
+        className={`bg-white p-4  ${isPressed && "border-b-0"}`}
       >
         <View className=" flex-row items-center">
           <View className="flex-1 pr-4">

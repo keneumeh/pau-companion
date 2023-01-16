@@ -10,7 +10,7 @@ const Categories = () => {
     sanityClient
       .fetch(
         `
-    *[_type == "category"]`
+    *[_type == "category"] | order(name)`
       )
       .then((data) => {
         setCategories(data);

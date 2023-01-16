@@ -24,9 +24,7 @@ const ClothItem = ({ id, image, name, price, description }) => {
     <>
       <TouchableOpacity
         onPress={() => setIsPressed(!isPressed)}
-        className={`bg-white p-4 border border-gray-200 ${
-          isPressed && "border-b-0"
-        }`}
+        className={`bg-white p-4  ${isPressed && "border-b-0"}`}
       >
         <View className=" flex-row items-center">
           <View className="flex-1 pr-4">
@@ -54,7 +52,7 @@ const ClothItem = ({ id, image, name, price, description }) => {
           </TouchableOpacity>
           <Text className="items-center">{items.length}</Text>
           <TouchableOpacity onPress={addItemToBasket}>
-            <PlusCircleIcon size={30} color="#00ccbb" />
+            <PlusCircleIcon size={30} color="#00cebb" />
           </TouchableOpacity>
         </View>
       )}

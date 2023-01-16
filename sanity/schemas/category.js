@@ -21,4 +21,11 @@ export default {
       type: "image",
     },
   ],
+  orderings: [
+    {
+      title: "Category name, New",
+      name: "nameDesc",
+      by: [{ field: "name", direction: "desc" }],
+    },
+  ],
 };
